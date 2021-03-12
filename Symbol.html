@@ -1,7 +1,7 @@
 <!--
  * @Author: Gatsby
  * @Date: 2021-03-12 14:37:17
- * @LastEditTime: 2021-03-12 15:38:23
+ * @LastEditTime: 2021-03-12 16:14:09
  * @LastEditors: Gatsby
  * @Description: 
  * @FilePath: \github\ES6\Symbol.html
@@ -72,7 +72,23 @@
                 console.log("basketball");
             }
         }
-        console.log (ben);  //{name: "ben", Symbol(play): ƒ, Symbol(dunk): ƒ}
+        console.log(ben); //{name: "ben", Symbol(play): ƒ, Symbol(dunk): ƒ}
+
+        //Symbol 内置属性
+        class Person {
+            static[Symbol.hasInstance](param) {
+                console.log(param); //{}
+                console.log("检测类型"); //检测类型 
+            }
+        }
+        let Obj = {};
+        console.log(Obj instanceof Person); //false
+
+        const arr = [1, 2, 3, 4];
+        const arr_2 = [11, 22, 33, 44];
+        arr_2[Symbol.isConcatSpreadable] = false;
+        console.log (arr.concat (arr_2));   //(5) [1, 2, 3, 4, Array(4)]
+
     </script>
 </body>
 
