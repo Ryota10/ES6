@@ -1,0 +1,79 @@
+<!--
+ * @Author: Gatsby
+ * @Date: 2021-03-12 14:37:17
+ * @LastEditTime: 2021-03-12 15:38:23
+ * @LastEditors: Gatsby
+ * @Description: 
+ * @FilePath: \github\ES6\Symbol.html
+ * 可以输入预定的版权声明、个性签名、空行等
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Symbol 表示独一无二的值;  Symbol 是一个动态值;  Symbol 值作为对象属性名时，不能用点运算符。
+        //1. 创建 Symbol 
+        let test_a = Symbol();
+        console.log(test_a, typeof test_a); //Symbol() "symbol"
+        let test_str_1 = Symbol("hello symbol");
+        let test_str_2 = Symbol("hello symbol");
+        console.log(test_str_1 === test_str_2); //false
+
+        //2. Symbol.for 创建
+        let test_b = Symbol.for("Symbol for");
+        let test_str_3 = Symbol.for("Symbol for");
+        console.log(test_b, typeof (test_b)); //Symbol(Symbol for) "symbol"
+        console.log(test_b === test_str_3); //true
+
+        //注意：不能与其他数据进行计算
+
+        //JS类型：USONB
+        // undefined   String  Object  null    Number  Boolean
+
+
+        // Symbol 的使用
+        //1. 向对象添加方法和属性
+        let game = {
+            name: "game",
+            down: function () {
+                console.log("game 中的 down");
+            }
+        }
+        let methods = {
+            up: Symbol(),
+            down: Symbol()
+        };
+        game[methods.up] = function () {
+            console.log("UP");
+        }
+        game[methods.down] = function () {
+            console.log("DOWN");
+        }
+        console.log(game); //{name: "game", down: ƒ, Symbol(): ƒ, Symbol(): ƒ}
+
+        //2.向对象添加方法和属性
+        let ben = {
+            name: "ben",
+            // play: function () {
+            //     console.log ("NBA");
+            //   }
+            [Symbol('play')]: function () {
+                console.log("NBA");
+            },
+            [Symbol('dunk')]: function () {
+                console.log("basketball");
+            }
+        }
+        console.log (ben);  //{name: "ben", Symbol(play): ƒ, Symbol(dunk): ƒ}
+    </script>
+</body>
+
+</html>
