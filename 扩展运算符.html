@@ -1,0 +1,59 @@
+<!--
+ * @Author: Gatsby
+ * @Date: 2021-03-12 10:49:31
+ * @LastEditTime: 2021-03-12 11:20:49
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \github\ES6\扩展运算符.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扩展运算符</title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        // (...) 扩展运算符可以将 "数组" 转换为 逗号分隔的 "参数序列" 
+        //注意： 之余函数调用的 " 实参 "  位置
+        //1. 声明一个数组 ...
+        const test_arr = ["user", "admin", "root"];
+
+        function out() {
+            console.log(arguments);
+        }
+        out(test_arr); //Argument [Array(3)]
+        out(...test_arr); //Arguments(3)
+
+
+        //扩展运算符的使用
+        //1. 数组合并
+        const test_arr_2 = ["user_a", "user_b", "user_c"];
+        const test_arr_3 = ["admin_a", "admin_b", "admin_c"];
+
+        // const allArr = test_arr_2.concat( test_arr_3 );  //原方式
+        const allArr = [...test_arr_2, ...test_arr_3]; //使用扩展运算符
+        console.log(allArr); //Array[6]
+
+        //2. 数组克隆
+        const test_arr_4 = ["root_a", "root_b", "root_c"];
+        const test_arr_5 = [...test_arr_4];
+        console.log(test_arr_4); //["root_a", "root_b", "root_c"] " 浅拷贝 "
+
+        //3.将伪数组转换为真正的数组
+        const divs = document.querySelectorAll(' div ');
+        console.log(divs); //NodeList(4) [div, div, div, div] Object类型
+        const divArr = [...divs];
+        console.log(divArr); //(4) [div, div, div, div] Array 类型        //arguments 也可使用此方法
+    </script>
+</body>
+
+</html>

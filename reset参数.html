@@ -1,0 +1,48 @@
+<!--
+ * @Author: Gatsby
+ * @Date: 2021-03-12 10:30:18
+ * @LastEditTime: 2021-03-12 10:59:54
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \github\reset参数.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reset</title>
+</head>
+
+<body>
+    <script>
+        // ES6 引入 reset 参数，用于获取函数的实参，用来代替 arguments
+        // arguments 是用于储存实参的属性
+        //注意： reset 参数至于 " 形参 " 位置
+
+        //1. ES5 获取实参的方式
+        // function date() {
+        //     console.log(arguments);
+        // }
+        // date("user", "admin", "root");      //输出的类型为对象
+
+        // //2. ES6 中 reset 参数设置
+        // function date(...args) {
+        //     console.log(args); //filter some  every  map 方法都可使用
+        // }
+        // date("reset-user", "reset-admin", "reset-root"); //输出的类型为数组
+
+        //3. reset 参数必须要放到参数最后,放在前面会报错提示置于最后
+        function fn (a, b, ...args){
+            console.log ( a );
+            console.log ( b );
+            console.log ( args );
+        }
+        fn ( 1, 2, 3, 4, 5, 6, 7);  //输出为1 2 Array[3, 4, 5, 6, 7]
+        
+    </script>
+</body>
+
+</html>
