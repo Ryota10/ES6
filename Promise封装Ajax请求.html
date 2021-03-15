@@ -1,7 +1,7 @@
 <!--
  * @Author      : Gatsby
  * @Date        : 2021-03-15 19: 22: 58
- * @LastEditTime: 2021-03-15 20:12:21
+ * @LastEditTime: 2021-03-15 20:31:11
  * @LastEditors: Gatsby
  * @Description : 
  * @FilePath: \github\ES6\Promise封装Ajax请求.html
@@ -32,11 +32,14 @@
         // //4.绑定事件，处理响应结果
         // xhr.onreadystatechange = function () {
         //     //判断响应状态码
-        //     if (xhr.status >= 200 && xhr.status < 300) {
-        //         //成功状态
-        //         console.log(xhr.response);
-        //     } else {
-        //         console.error(xhr.status);
+        //     if (xhr.readyState === 4) {
+
+        //         if (xhr.status >= 200 && xhr.status < 300) {
+        //             //成功状态
+        //             console.log(xhr.response);
+        //         } else {
+        //             console.error(xhr.status);
+        //         }
         //     }
         // }
 
@@ -57,16 +60,19 @@
             //4.绑定事件，处理响应结果
             xhr.onreadystatechange = function () {
                 //判断响应状态码
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    //成功状态
-                    resolve(xhr.response);
-                    // console.log (xhr.response);
-                } else {
-                    //失败状态
-                    regect(xhr.status);
+                if (xhr.readyState === 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        //成功状态
+                        resolve(xhr.response);
+                        // console.log (xhr.response);
+                    } else {
+                        //失败状态
+                        regect(xhr.status);
+                    }
                 }
             }
         });
+
         //指定回调
         p.then(
             function (value) {
