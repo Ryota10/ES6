@@ -1,0 +1,117 @@
+<!--
+ * @Author: Gatsby
+ * @Date: 2021-03-15 09:20:38
+ * @LastEditTime: 2021-03-15 10:43:58
+ * @LastEditors: Gatsby
+ * @Description: 
+ * @FilePath: \github\ES6\迭代器.html
+ * 可以输入预定的版权声明、个性签名、空行等
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 总结来说:for in总是得到对像的key或数组,字符串的下标; 而for of和forEach一样,是直接得到值结果; for of不能对象用对于新出来的Map,Set上面 -->
+
+    <!-- JavaScript 提供了 foreach() map() 两个可遍历 Array对象 的方法 forEach和map用法类似，都可以遍历到数组的每个元素，而且参数一致； -->
+    <!-- 不同点：
+    forEach() 方法对数组的每个元素执行一次提供的函数。总是返回undefined；map() 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。返回值是一个新的数组； -->
+
+
+    <!-- 迭代器 Iterator 是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署 Iteretor 接口，就可以完成遍历操作 -->
+    <!-- ES6创造了一种新的遍历命令 for...of 循环，Iterator 接口主要提供 for...of 消费 -->
+    <!-- 原生具备 Iterator 接口的数据 （可用 for...of 遍历 ）Array   Arguments   Set   Map   String  TypedArray  NodeList   含有 Symbol.iterator 属性的 -->
+
+    <!-- for...in循环会遍历一个object 所有的可枚举属性 。for...of会遍历具有 iterator接口 的数据结构 -->
+
+    <script>
+        const user = ['a', 'b', 'c', 'd'];
+
+        //使用 for...of 遍历数组 前面的变量保存的是键值 ; but , for...in 中保存的是键名
+        for (let val of user) {
+            // for (let val in user){
+            // console.log (val);  //0   1   2   3  (for...in)
+            console.log(val); //a   b   c   d  (for...of)
+        }
+
+        // 工作原理
+        console.log(user); //Symbol(Symbol.iterator): ƒ values()
+
+        let iterator = user[Symbol.iterator]();
+        console.log(iterator); //Array Iterator {}  下层有next方法
+
+        // 调用对象的 next 方法
+        console.log(iterator.next()); //{value: "a", done: false}
+        console.log(iterator.next()); //{value: "b", done: false}
+        console.log(iterator.next()); //{value: "c", done: false}
+        console.log(iterator.next()); //{value: "d", done: false}
+        console.log(iterator.next()); //{value: undefined, done: true}
+
+        // 迭代器的运用
+        // 自定义遍历数据的时候
+        const Nba = {
+            name: "76ers",
+            players: [
+                'Iverson',
+                'Ben',
+                'Dany',
+                'Joel'
+            ],
+            [Symbol.iterator]() {
+                // 索引变量
+                let i = 0;
+                let _this = this;
+                return {
+                    next: function () {
+                        if (i < _this.players.length) {
+                            const res = {
+                                value: _this.players[i],
+                                done: false
+                            }
+                            i++;
+                            return res;
+                        } else {
+                            return {
+                                value: undefined,
+                                done: true
+                            }
+                        }
+
+                    }
+                };
+            }
+        }
+        // 遍历这个对象 (面向对象思路)
+        // for (let value of Nba){
+        for (let value in Nba) {
+            console.log(value, Nba[value]); //name 76ers  Nba.players.forEach(value_4)   返回属性名
+        }
+
+        // for (let value_2 of Nba){
+        //     console.log (value_2);  //Uncaught TypeError: Nba is not iterable
+        // }
+
+        for (let value_3 of Nba.players) {
+            console.log(value_3); //Iverson   Ben   Dany   Joel
+        }
+
+
+        for (let value_5 of Nba) {
+            console.log(value_5); //Iverson   Ben   Dany   Joel
+        }
+
+        Nba.players.forEach(el => {
+            console.log(el); //Iverson   Ben   Dany   Joel
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!--
+ * @Author: Gatsby
+ * @Date: 2021-03-15 15:53:16
+ * @LastEditTime: 2021-03-15 19:03:11
+ * @LastEditors: Gatsby
+ * @Description: 
+ * @FilePath: \github\ES6\Promise.html
+ * 可以输入预定的版权声明、个性签名、空行等
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 实例化 Promise 对象 ；   Promise 有三个状态： 初始化 成功 失败 ；分别通过 resolve 与 reject 来改变 Promise 的状态；
+        // 第一个方法为调用成功的状态，第二个方法为调用失败的状态
+        const p = new Promise(function (resolve, regect) {
+            setTimeout(function () {
+                //
+                let data = '数据库中的数据';
+                //调用 resolve 方法后 Promise 的状态为成功，调用 then 方法中的第一个回调函数方法
+                // resolve(data);
+
+                let err = '数据库读取失败';
+                //调用 regect 方法后 Promise 的状态为失败，调用 then 方法中的第二个回调函数方法
+                regect(err);
+            }, 1000);
+        });
+        //调用 Promise 对象中的 then 方法 如若有两个方法，则与 Promise 中的方法位置对应，若是只有一个方法则都调用这一个方法
+        p.then(
+            function (value) {
+                console.log(value); //数据库中的数据
+            },
+            function (reason) {
+                // console.error("error");  //error
+                console.error(reason); //数据库读取失败
+            }
+        );
+    </script>
+</body>
+
+</html>

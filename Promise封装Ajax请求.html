@@ -1,0 +1,82 @@
+<!--
+ * @Author      : Gatsby
+ * @Date        : 2021-03-15 19: 22: 58
+ * @LastEditTime: 2021-03-15 20:12:21
+ * @LastEditors: Gatsby
+ * @Description : 
+ * @FilePath: \github\ES6\Promise封装Ajax请求.html
+ * 可以输入预定的版权声明、个性签名、空行等
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // //Ajax
+        // //1. 创建对象
+        // const xhr = new XMLHttpRequest();
+
+        // //2. 初始化
+        // xhr.open("GET", "https://api.apiopen.top/getJoke");
+
+        // //3. 发送
+        // xhr.send();
+
+        // //4.绑定事件，处理响应结果
+        // xhr.onreadystatechange = function () {
+        //     //判断响应状态码
+        //     if (xhr.status >= 200 && xhr.status < 300) {
+        //         //成功状态
+        //         console.log(xhr.response);
+        //     } else {
+        //         console.error(xhr.status);
+        //     }
+        // }
+
+
+        // Promise 封装
+        // const p = new Promise(function (resolve, regect) {
+        const p = new Promise((resolve, regect) => {
+
+            //1. 创建对象
+            const xhr = new XMLHttpRequest();
+
+            //2. 初始化
+            xhr.open("GET", "https://api.apiopen.top/getJoke");
+
+            //3. 发送
+            xhr.send();
+
+            //4.绑定事件，处理响应结果
+            xhr.onreadystatechange = function () {
+                //判断响应状态码
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    //成功状态
+                    resolve(xhr.response);
+                    // console.log (xhr.response);
+                } else {
+                    //失败状态
+                    regect(xhr.status);
+                }
+            }
+        });
+        //指定回调
+        p.then(
+            function (value) {
+                console.log(value); //输出请求到的内容
+            },
+            function (reason) {
+                console.error(reason);
+            }
+        );
+    </script>
+</body>
+
+</html>

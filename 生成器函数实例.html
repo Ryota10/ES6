@@ -1,0 +1,110 @@
+<!--
+ * @Author      : Gatsby
+ * @Date        : 2021-03-15 14: 51: 11
+ * @LastEditTime: 2021-03-15 15:53:00
+ * @LastEditors: Gatsby
+ * @Description : 
+ * @FilePath: \github\ES6\生成器函数实例.html
+ * 可以输入预定的版权声明、个性签名、空行等
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //异步编程  文件操作    网络操作（Ajax， request） 数据库操作
+        //1s 后控制台输出 111； 2s 后控制台输出 222； 3s 后控制台输出 333
+
+        //回调地狱
+        // setTimeout (() => {
+        //     console.log (111);
+        //     setTimeout (() => {
+        //         console.log (222);
+        //         setTimeout (() => {
+        //             console.log (333);
+        //         },3000);
+        //     },2000);
+        // },1000);
+
+        //生成器函数实例一
+        // function one() {
+        //     setTimeout(() => {
+        //         console.log(111);
+        //         iterator.next();
+        //     }, 1000);
+        // }
+
+        // function two() {
+        //     setTimeout(() => {
+        //         console.log(222);
+        //         iterator.next();
+        //     }, 2000);
+        // }
+
+        // function three() {
+        //     setTimeout(() => {
+        //         console.log(333);
+        //         iterator.next();
+        //     }, 3000);
+        // }
+
+        // function* gen() {
+        //     yield one();
+        //     yield two();
+        //     yield three();
+        // }
+
+        //调用生成器函数
+        // console.log (gen ());   //gen {<suspended>} （其中包含有 next 方法）
+        // let iterator = gen();
+        // iterator.next();
+
+
+        //生成器函数实例二
+        //模拟获取：  用户数据    订单数据    商品数据
+        function getUsers() {
+            setTimeout(() => {
+                let data = '用户数据';
+
+                //调用 next 方法， 并将数据传入
+                iterator_1.next(data);
+            }, 1000);
+        }
+
+        function getOrders() {
+            setTimeout(() => {
+                let data = '订单数据';
+                iterator_1.next(data);
+            }, 1000);
+        }
+
+        function getGoods() {
+            setTimeout(() => {
+                let data = '商品数据';
+                iterator_1.next(data);
+            }, 1000);
+        }
+
+        function* gen() {
+            let users = yield getUsers();
+            console.log(users); //用户数据
+            let orders = yield getOrders();
+            console.log(orders); //订单数据
+            let goods = yield getGoods();
+            console.log(goods); //商品数据
+        }
+
+        // 调用生成器函数
+        let iterator_1 = gen();
+        iterator_1.next();
+    </script>
+</body>
+
+</html>

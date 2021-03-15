@@ -1,0 +1,64 @@
+<!--
+ * @Author: Gatsby
+ * @Date: 2021-03-15 10:45:26
+ * @LastEditTime: 2021-03-15 14:31:51
+ * @LastEditors: Gatsby
+ * @Description: 
+ * @FilePath: \github\ES6\生成器.html
+ * 可以输入预定的版权声明、个性签名、空行等
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 生成器函数 Generator 是 ES6 提供的一种异步解决方案，语法行为与传统函数完全不同
+        //异步编程  Ajax    mongodb     
+        // 函数代码的分隔符  yield
+        function* gen() {
+            console.log("the 1 generator");
+            yield 'hello';
+            console.log("the 2 generator");
+            yield 'world';
+            console.log("the 3 generator");
+            yield '!!!'
+            console.log("the 4 generator");
+
+        }
+        let iterator = gen();
+        // console.log(iterator); //gen {<suspended>}
+
+        //调用 next 方法才能执行 gen 方法内的输出
+        iterator.next(); //the 1 generator
+        iterator.next(); //the 2 generator
+        console.log(iterator.next()); //value: "!!!", done: false}
+        iterator.next(); //the 3 generator
+        iterator.next(); //the 4 generator
+        iterator.next(); //
+        iterator.next(); //
+        console.log(iterator.next()); //{value: undefined, done: true}
+
+
+        //遍历
+        for (let val of gen()) {
+            console.log(val);
+            /*生成器.html: 28 hello  
+              生成器.html: 28 the 2 generator
+              生成器.html: 48 world
+              生成器.html: 30 the 3 generator
+              生成器.html: 48!!!
+              生成器.html: 32 the 4 generator */
+
+
+        }
+    </script>
+</body>
+
+</html>
