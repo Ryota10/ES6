@@ -1,0 +1,62 @@
+<!--
+ * @Author: Gatsby
+ * @Date: 2021-03-26 15:10:22
+ * @LastEditTime: 2021-03-26 15:52:11
+ * @LastEditors: Gatsby
+ * @Description: 
+ * @FilePath: \ES6\Map数据结构.html
+ * 可以输入预定的版权声明、个性签名、空行等
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。
+        //声明 Map
+        let map_1 = new Map();
+
+        //添加元素
+        map_1.set('id', 111);
+        map_1.set('name', function () {
+            console.log("user");
+        })
+        // console.log(map_1); //Map(2) {"id" => 111, "name" => ƒ}
+
+        let key = {
+            league: "nba"
+        };
+        map_1.set(key, ['abc', 'ABC', 'def', 'DEF']);
+        // console.log(map_1);     //Map(3) {"id" => 111, "name" => ƒ, {…} => Array(4)}
+        
+        //size
+        console.log(map_1.size);    //3
+
+        //删除
+        map_1.delete('name');       //Map(2) {"id" => 111, {…} => Array(4)}
+
+        //获取
+        console.log(map_1.get('id'));   //111
+        console.log(map_1.get(key));        //(4) ["abc", "ABC", "def", "DEF"]
+
+        //清空
+        // map_1.clear();      //Map(0) {}
+
+        //遍历
+        for(let val of map_1){
+            console.log(val);   //(2) ["id", 111]
+        }
+        
+        // console.log(map_1);
+
+    </script>
+</body>
+
+</html>
