@@ -1,0 +1,65 @@
+<!--
+ * @Author: Gatsby
+ * @Date: 2021-03-30 15:40:56
+ * @LastEditTime: 2021-03-30 16:17:12
+ * @LastEditors: Gatsby
+ * @Description: 
+ * @FilePath: \ES6\对象方法扩展.html
+ * 可以输入预定的版权声明、个性签名、空行等
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. Object.is 判断两个值是否完全相等
+        console.log(Object.is(111, 222)); //false
+        console.log(Object.is(999, 999)); //true
+        console.log(Object.is(NaN, NaN)); //true
+        console.log(NaN === NaN); //false
+
+        // 2. Object.assign 对象的合并
+        const obj_1 = {
+            name: 'abc',
+            id: 111,
+            type: 'admin',
+            other: 'other'
+        };
+        const obj_2 = {
+            name: 'cba',
+            id: 222,
+            type: 'root'
+        };
+        console.log(Object.assign(obj_1, obj_2)); //{name: "cba", id: 222, type: "root", other: "other"}
+
+        // 3. Object.setPrototypeOf 设置原型对象   Object.getPrototypeOf
+        const league = {
+            name: 'test',
+            id: 000
+        }
+        const user = {
+            id: 111,
+            name: 'root',
+            type: 'root'
+        }
+        Object.setPrototypeOf(league, user);
+        console.log(Object.getPrototypeOf(league)); //{id: 111, name: "root", type: "root"}
+        console.log(league);
+        /*{name: "test", id: 0}
+        id: 0
+        name: "test"
+        __proto__:
+        id: 111
+        name: "root"
+        type: "root"*/
+    </script>
+</body>
+
+</html>
