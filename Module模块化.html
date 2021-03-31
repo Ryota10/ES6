@@ -1,0 +1,66 @@
+<!--
+ * @Author: Gatsby
+ * @Date: 2021-03-31 09:50:15
+ * @LastEditTime: 2021-03-31 14:43:36
+ * @LastEditors: Gatsby
+ * @Description: 
+ * @FilePath: \ES6\Module模块化.html
+ * 可以输入预定的版权声明、个性签名、空行等
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="Module">
+        // 模块化是指将一个很大的程序文件，拆分成许多小的文件，然后将文件组合起来
+        //优点：防止命名冲突    代码复用    高维护性
+        //1.Module 模块化语法
+        //模块功能主要由两个命令构成：export和import。export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。
+        
+        //1. 整体加载的写法
+        // 引入 moduleTest_1.js 模块      
+        // import * as moduleTest_1 from "./moduleTest_1.js";
+        // console.log(moduleTest_1);
+
+        //引入 moduleTest_2 模块
+        // import * as moduleTest_2 from "./moduleTest_2.js";
+        // console.log (moduleTest_2);
+
+        //引入 moduleTest_3 模块
+        // import * as moduleTest_3 from "./moduleTest_3.js";
+        // console.log(moduleTest_3);  //
+        // moduleTest_3.default.defence();     //DEFENCE !!!
+        
+        //2. 解构赋值形式引入
+        import {player, play} from "./moduleTest_1.js";
+        console.log(player);    //tom
+        play();    //play basketball !!!
+        
+        // import {score} from "./moduleTest_2.js";
+        // console.log(score); //Score
+        
+        //使用  "别名"
+        import { score as point } from "./moduleTest_2.js";
+        console.log(point);     //Score
+
+        //3. 使用解构赋值方式引入默认暴露方式 (必须使用 "别名")
+        // import { default as moduleTest_3_2 } from "./moduleTest_3.js";
+        // console.log(moduleTest_3_2);  //{name: "user", defence: ƒ}
+
+        //4.简便形式 (只针对默认暴露使用)
+        import moduleTest_3_3 from "./moduleTest_3.js";
+        console.log(moduleTest_3_3);    //{name: "user", defence: ƒ}
+
+    </script>
+
+    </script>
+</body>
+
+</html>
