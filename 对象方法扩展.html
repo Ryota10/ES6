@@ -38,6 +38,7 @@
             type: 'root'
         };
         console.log(Object.assign(obj_1, obj_2)); //{name: "cba", id: 222, type: "root", other: "other"}
+        //但是 Object.assign() 进行的是浅拷贝，拷贝的是对象的属性的引用，而不是对象本身。
 
         // 3. Object.setPrototypeOf 设置原型对象   Object.getPrototypeOf
         const league = {
