@@ -19,21 +19,25 @@
 
 <body>
     <script>
-        //get 、 set
-        class school {
+       //get 、 set
+       class school {
             get student() {
                 console.log("STUDENT !!!");
                 return "test user !";
             }
             set name(val) {
-                console.log("使用 SET 设置 !!!");
+                console.log("使用 SET 设置 !!! " + val);
             }
         }
 
         //实例化对象
         let s = new school();
         s.name = "admin";
-        console.log(s.student); // 使用 SET 设置 !!!  getter和setter设置.html: 29         STUDENT !!!  getter和setter设置.html: 25      test user!  getter和setter设置.html:36
+        console.log(s.student);
+        /*使用 SET 设置 !!! admin
+        STUDENT !!!
+        test user !
+         */
 
     </script>
 </body>
